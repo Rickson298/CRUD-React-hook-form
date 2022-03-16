@@ -27,10 +27,10 @@ export const BookForm = () => {
   });
   const navigate = useNavigate();
 
-  const onSubmit = (dataForm: UseFormInputs) => {
+  const onSubmit = async (dataForm: UseFormInputs) => {
     id
-      ? putData(`books/${id}`, dataForm)
-      : postData("books", {
+      ? await putData(`books/${id}`, dataForm)
+      : await postData("books", {
           name: dataForm.name,
           author: dataForm.author,
           description: dataForm.description,
@@ -57,12 +57,27 @@ export const BookForm = () => {
             {id ? "Editar Livro" : "Cadastrar Livro"}
           </span>
         </div>
-        <input type="text" {...register("name")} />
-        {errors.name?.message}
-        <input type="text" {...register("author")} />
-        <input type="text" {...register("description")} />
-        <input type="text" {...register("rating")} />
-        <input type="submit" value="Enviar" />
+        <div className="group-input">
+          <label htmlFor="name">Nome do Livro</label>
+          <input id="name" type="text" {...register("name")} />
+          <span className="message-error">{errors.name?.message}</span>
+        </div>
+        <div className="group-input">
+          <label htmlFor="name">Author</label>
+          <input type="text" {...register("author")} />
+          <span className="message-error">{errors.author?.message}</span>
+        </div>
+        <div className="group-input">
+          <label htmlFor="name">Descrição</label>
+          <textarea {...register("description")} />
+          <span className="message-error">{errors.description?.message}</span>
+        </div>
+        <div className="group-input">
+          <label htmlFor="name">Avaliação</label>
+          <input type="text" {...register("rating")} />
+          <span className="message-error">{errors.rating?.message}</span>
+        </div>
+        <input type="submit" className="submit" value="Enviar" />
       </C.Form>
     </C.Container>
   );
