@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useApi } from "../../../hooks/useApi";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import * as C from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formBookValidation } from "../../../validations/formBookValidation";
+import { Input } from "../../input/Inputs";
 
 interface UseFormInputs {
   name: string;
@@ -17,15 +18,13 @@ interface UseFormInputs {
 export const BookForm = () => {
   let { id } = useParams();
   const { getData, data, putData, postData } = useApi();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<UseFormInputs>({
+  const navigate = useNavigate();
+  const methods = useForm<UseFormInputs>({
     resolver: yupResolver(formBookValidation),
   });
-  const navigate = useNavigate();
+  const {
+    formState: { errors },
+  } = methods;
 
   const onSubmit = async (dataForm: UseFormInputs) => {
     id
@@ -45,19 +44,40 @@ export const BookForm = () => {
   }, []);
 
   useEffect(() => {
-    reset(data);
+    methods.reset(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (
     <C.Container>
-      <C.Form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <span className="title-form">
-            {id ? "Editar Livro" : "Cadastrar Livro"}
-          </span>
-        </div>
-        <div className="group-input">
+      <FormProvider {...methods}>
+        <C.Form onSubmit={methods.handleSubmit(onSubmit)}>
+          <div>
+            <span className="title-form">
+              {id ? "Editar Livro" : "Cadastrar Livro"}
+            </span>
+          </div>
+          <Input
+            label="Nome do livro"
+            messageError={errors.name?.message}
+            name="name"
+          />
+          <Input
+            label="Autor"
+            messageError={errors.author?.message}
+            name="author"
+          />
+          <Input
+            label="Descrição"
+            messageError={errors.description?.message}
+            name="description"
+          />
+          <Input
+            label="Avaliação"
+            messageError={errors.rating?.message}
+            name="rating"
+          />
+          {/* <div className="group-input">
           <label htmlFor="name">Nome do Livro</label>
           <input id="name" type="text" {...register("name")} />
           <span className="message-error">{errors.name?.message}</span>
@@ -73,12 +93,13 @@ export const BookForm = () => {
           <span className="message-error">{errors.description?.message}</span>
         </div>
         <div className="group-input">
-          <label htmlFor="name">Avaliação</label>
-          <input type="text" {...register("rating")} />
-          <span className="message-error">{errors.rating?.message}</span>
-        </div>
-        <input type="submit" className="submit" value="Enviar" />
-      </C.Form>
+        <label htmlFor="name">Avaliação</label>
+        <input type="text" {...register("rating")} />
+        <span className="message-error">{errors.rating?.message}</span>
+        </div>  */}
+          <input type="submit" className="submit" value="Enviar" />
+        </C.Form>
+      </FormProvider>
     </C.Container>
   );
 };
