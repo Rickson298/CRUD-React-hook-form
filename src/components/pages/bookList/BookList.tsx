@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BiPencil } from "react-icons/bi";
@@ -22,17 +22,25 @@ interface DataBooks {
 
 export const BookList = () => {
   const { getData, data: books, deleteData } = useApi();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const booksFiltered = books.filter((book: DataBooks) =>
+    book.name.toUpperCase().includes(search.toUpperCase())
+  );
+
   useEffect(() => {
     getData("/books");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const navigate = useNavigate();
-
   return (
     <C.Container>
+      <input
+        placeholder="Pesquise um Livro"
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <C.Books>
-        {books.map((book: DataBooks) => (
+        {booksFiltered.map((book: DataBooks) => (
           <Book>
             <div className="header-book">
               <span className="book-name">{book.name}</span>

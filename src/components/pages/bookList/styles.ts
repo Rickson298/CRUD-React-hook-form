@@ -8,6 +8,16 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  input {
+    width: 650px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    outline: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Books = styled.div`

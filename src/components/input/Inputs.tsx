@@ -5,7 +5,7 @@ interface Props {
   name: string;
   messageError?: string;
   type?: string;
-  label: string;
+  label?: string;
 }
 
 export const Input = ({ name, type = "text", messageError, label }: Props) => {
