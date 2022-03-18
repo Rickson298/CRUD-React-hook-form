@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
   min-width: 100%;
@@ -6,13 +6,35 @@ export const Container = styled.div`
   padding: 35px;
   background: #f7f7f7;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .content {
+    min-height: 650px;
+    width: 650px;
+
+    .arrow-back {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      transition: all ease 0.2s;
+      cursor: pointer;
+      margin-bottom: 10px;
+      &:hover {
+        background: #ccc;
+      }
+    }
+
+    @media (max-width: 750px) {
+      width: 100%;
+    }
+  }
 `;
 
 export const Form = styled.form`
-  min-height: 650px;
-  width: 650px;
+  width: 100%;
+  height: 100%;
   padding: 30px;
   display: flex;
   flex-direction: column;

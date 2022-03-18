@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useApi } from "../../../hooks/useApi";
 import { formBookValidation } from "../../../validations/formBookValidation";
 import { Input } from "../../input/Inputs";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import * as C from "./styles";
 
 interface UseFormInputs {
@@ -50,36 +51,42 @@ export const BookForm = () => {
 
   return (
     <C.Container>
-      <FormProvider {...methods}>
-        <C.Form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div>
-            <span className="title-form">
-              {id ? "Editar Livro" : "Cadastrar Livro"}
-            </span>
-          </div>
-          <Input
-            label="Nome do livro"
-            messageError={errors.name?.message}
-            name="name"
-          />
-          <Input
-            label="Autor"
-            messageError={errors.author?.message}
-            name="author"
-          />
-          <Input
-            label="Descrição"
-            messageError={errors.description?.message}
-            name="description"
-          />
-          <Input
-            label="Avaliação"
-            messageError={errors.rating?.message}
-            name="rating"
-          />
-          <input type="submit" className="submit" value="Enviar" />
-        </C.Form>
-      </FormProvider>
+      <div className="content">
+        <MdOutlineKeyboardArrowLeft
+          className="arrow-back"
+          onClick={() => navigate("/")}
+        />
+        <FormProvider {...methods}>
+          <C.Form onSubmit={methods.handleSubmit(onSubmit)}>
+            <div>
+              <span className="title-form">
+                {id ? "Editar Livro" : "Cadastrar Livro"}
+              </span>
+            </div>
+            <Input
+              label="Nome do livro"
+              messageError={errors.name?.message}
+              name="name"
+            />
+            <Input
+              label="Autor"
+              messageError={errors.author?.message}
+              name="author"
+            />
+            <Input
+              label="Descrição"
+              messageError={errors.description?.message}
+              name="description"
+            />
+            <Input
+              label="Avaliação"
+              messageError={errors.rating?.message}
+              name="rating"
+            />
+            <input type="submit" className="submit" value="Enviar" />
+          </C.Form>
+        </FormProvider>
+      </div>
     </C.Container>
   );
 };
