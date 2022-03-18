@@ -1,12 +1,12 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useApi } from "../../../hooks/useApi";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import * as C from "./styles";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useParams } from "react-router-dom";
+import { useApi } from "../../../hooks/useApi";
 import { formBookValidation } from "../../../validations/formBookValidation";
 import { Input } from "../../input/Inputs";
+import * as C from "./styles";
 
 interface UseFormInputs {
   name: string;
@@ -77,26 +77,6 @@ export const BookForm = () => {
             messageError={errors.rating?.message}
             name="rating"
           />
-          {/* <div className="group-input">
-          <label htmlFor="name">Nome do Livro</label>
-          <input id="name" type="text" {...register("name")} />
-          <span className="message-error">{errors.name?.message}</span>
-        </div>
-        <div className="group-input">
-          <label htmlFor="name">Author</label>
-          <input type="text" {...register("author")} />
-          <span className="message-error">{errors.author?.message}</span>
-        </div>
-        <div className="group-input">
-          <label htmlFor="name">Descrição</label>
-          <textarea {...register("description")} />
-          <span className="message-error">{errors.description?.message}</span>
-        </div>
-        <div className="group-input">
-        <label htmlFor="name">Avaliação</label>
-        <input type="text" {...register("rating")} />
-        <span className="message-error">{errors.rating?.message}</span>
-        </div>  */}
           <input type="submit" className="submit" value="Enviar" />
         </C.Form>
       </FormProvider>
