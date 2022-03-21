@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface PropsBook {
   isDeleted: boolean;
@@ -18,18 +18,26 @@ export const Container = styled.div<PropsBook>`
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  height: ${({ isDeleted }) => (isDeleted ? "0px" : "150px")};
-  padding: ${({ isDeleted }) => (isDeleted ? "0px" : "15px")};
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  height: 150px;
+  padding: 15px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   background: ${({ theme: { colors } }) => colors.backgroundSecundary};
-  border: ${({ isDeleted, theme: { colors } }) => !isDeleted && colors.border};
+  border: ${({ theme: { colors } }) => colors.border};
   color: ${({ theme: { colors } }) => colors.textPrimary};
-  margin-bottom: ${({ isDeleted }) => (isDeleted ? "0px" : "30px")};
+  margin-bottom: 30px;
   position: relative;
   overflow: hidden;
   &:hover {
     background: ${({ theme: { colors } }) => colors.backgroundPrimary};
   }
+  ${({ isDeleted }) =>
+    isDeleted &&
+    css`
+      height: 0px;
+      padding: 0px;
+      border: none;
+      margin-bottom: 0px;
+    `};
 
   .header-book {
     width: 100%;
