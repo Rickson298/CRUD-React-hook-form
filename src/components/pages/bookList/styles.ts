@@ -1,22 +1,19 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  min-width: 100%;
-  min-height: 100vh;
-  padding: 35px;
-  background: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  input {
-    width: 650px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    outline: none;
-    border-radius: 8px;
-    margin-bottom: 10px;
+export const Input = styled.input`
+  width: 650px;
+  padding: 15px;
+  border: none;
+  background: #7b68ee;
+  outline: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: white;
+  &::placeholder {
+    color: white;
+  }
+  @media (max-width: 750px) {
+    width: 100%;
   }
 `;
 
@@ -28,8 +25,19 @@ export const Books = styled.div`
   flex-direction: column;
   gap: 30px;
   border-radius: 16px;
-  box-shadow: 1px 1px 4px 1px #ccc;
-  background: white;
+  border: ${({ theme: { colors } }) => colors.border};
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+  background: ${({ theme: { colors } }) => colors.backgroundSecundary};
+
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+
+  .container-books {
+    transition: all ease 2s;
+    display: flex;
+    flex-direction: column;
+  }
 
   .add-more-button {
     margin-top: auto;
@@ -39,7 +47,7 @@ export const Books = styled.div`
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    border: 1px solid #ccc;
+    border: ${({ theme: { colors } }) => colors.border};
     margin-left: auto;
     transition: all ease 0.2s;
     display: flex;
@@ -48,25 +56,8 @@ export const Books = styled.div`
     color: gray;
     font-size: 22px;
     &:hover {
-      background: lightBlue;
+      background: #7b68ee;
       color: white;
     }
   }
-`;
-
-export const Stars = styled.div`
-  display: flex;
-  justify-content: end;
-  gap: 5px;
-  height: max-content;
-`;
-
-export const IconsBook = styled.div`
-  position: absolute;
-  display: flex;
-  gap: 10px;
-  top: 15px;
-  right: 15px;
-  transition: all ease 0.2s;
-  opacity: 0;
 `;

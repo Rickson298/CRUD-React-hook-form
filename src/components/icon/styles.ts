@@ -16,6 +16,7 @@ export const IconStyled = styled.button<PropsIconStyled>`
   width: 30px;
   height: 30px;
   border: 1px solid #ccc;
+  background: ${({ theme: { colors } }) => colors.backgroundSecundary};
   cursor: pointer;
   &:hover {
     color: ${({ color }) => color || "white"};

@@ -3,30 +3,26 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
 
   textarea {
     resize: none;
     width: 100%;
     height: 250px;
     overflow: auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    padding: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  input {
-    border: 1px solid #ccc;
+  input,
+  textarea {
+    border: ${({ theme: { colors } }) => colors.border};
     padding: 15px;
     border-radius: 8px;
     outline: none;
-  }
-
-  textarea,
-  input {
+    transition: all ease 0.2s;
+    background: ${({ theme: { colors } }) => colors.backgroundSecundary};
+    color: ${({ theme: { colors } }) => colors.textPrimary};
     &:focus {
-      background: #f5f5f5;
+      box-shadow: 1px 1px 6px 1px #7b68ee;
     }
   }
 

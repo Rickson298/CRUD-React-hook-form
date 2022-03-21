@@ -1,34 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-width: 100%;
-  min-height: 100vh;
-  padding: 35px;
-  background: #f7f7f7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: 650px;
+  width: 650px;
 
-  .content {
-    min-height: 650px;
-    width: 650px;
-
-    .arrow-back {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      transition: all ease 0.2s;
-      cursor: pointer;
-      margin-bottom: 10px;
-      &:hover {
-        background: #ccc;
-      }
+  .arrow-back {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all ease 0.2s;
+    color: ${({ theme: { colors } }) => colors.textPrimary};
+    cursor: pointer;
+    margin-bottom: 10px;
+    &:hover {
+      background: ${({ theme: { colors } }) => colors.backgroundSecundary};
     }
+  }
 
-    @media (max-width: 750px) {
-      width: 100%;
-    }
+  @media (max-width: 750px) {
+    width: 100%;
   }
 `;
 
@@ -38,24 +28,46 @@ export const Form = styled.form`
   padding: 30px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   border-radius: 16px;
-  box-shadow: 1px 1px 4px 1px #ccc;
-  background: white;
+  border: ${({ theme: { colors } }) => colors.border};
+  color: ${({ theme: { colors } }) => colors.textPrimary};
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+  background: ${({ theme: { colors } }) => colors.backgroundSecundary};
 
   .submit {
     background: none;
-    border: 1px solid #ccc;
+    border: ${({ theme: { colors } }) => colors.border};
     padding: 15px;
     border-radius: 8px;
+    color: ${({ theme: { colors } }) => colors.textPrimary};
+
     transition: all ease 0.2s;
     &:hover {
       color: white;
-      background: lightBlue;
+      background: #7b68ee;
       cursor: pointer;
     }
   }
   .title-form {
     font-size: 26px;
   }
+`;
+
+export const Stars = styled.div`
+  display: flex;
+  gap: 5px;
+
+  .star-icon {
+    transition: all ease 0.2s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+`;
+
+export const Rating = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
