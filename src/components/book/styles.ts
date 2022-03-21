@@ -20,7 +20,7 @@ export const Container = styled.div<PropsBook>`
   border-radius: 16px;
   height: 150px;
   padding: 15px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   background: ${({ theme: { colors } }) => colors.backgroundSecundary};
   border: ${({ theme: { colors } }) => colors.border};
   color: ${({ theme: { colors } }) => colors.textPrimary};
