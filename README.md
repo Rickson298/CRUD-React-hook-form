@@ -1,4 +1,5 @@
-# Desafio Softeasy
+# CRUD com consumo de API REST e gerenciação de formulário com React hook form e YUP
+
 
 ## Scripts
 
